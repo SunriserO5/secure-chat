@@ -1,0 +1,15 @@
+{
+  "serverPort": 3000,
+  "chatOpen": true,
+  "adminPassword": "CHANGE_THIS_PASSWORD",
+  "maxFileSizeMB": 100,
+  "fileRetentionSeconds": 3600,
+  "rooms": [
+    {
+      "id": "default-room",
+      "name": "General Chat",
+      "token": "default-token",
+      "allowedUsers": ["admin", "user"]
+    }
+  ]
+}
