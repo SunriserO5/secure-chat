@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+dist/
+build/
+*.log
+npm-debug.log*
+
+# Server specifics
+server/uploads/
+server/config.json
+server/admin_keys.json
+server/.env
+
+# Editor directories
+.idea/
+.vscode/

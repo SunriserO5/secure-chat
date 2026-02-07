@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #222;
+  color: #eee;
+}
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+input, button {
+  padding: 8px;
+  margin: 4px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #333;
+  color: white;
+}
+button {
+  cursor: pointer;
+  background: #4a4;
+}
+button:hover {
+  background: #5b5;
+}
+.msg {
+  padding: 8px;
+  background: #444;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+.system {
+  color: #aaa;
+  font-style: italic;
+}
+.admin-panel {
+  border: 1px solid #c44;
+  padding: 10px;
+  margin-bottom: 20px;
+}
