@@ -80,7 +80,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 app.get('/files/:fileId', (req, res) => {
     const filePath = path.join(uploadDir, req.params.fileId);
     if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Not found' });
-    res.download(filePath);
+    res.sendFile(filePath);
 });
 
 // 3. Admin Login

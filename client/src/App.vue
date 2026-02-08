@@ -42,6 +42,8 @@ const encodeBase64 = util.encodeBase64;
 const decodeBase64 = util.decodeBase64;
 // Removed confusing aliases to avoid TypeError
 
+const isImage = (name) => /\.(jpg|jpeg|png|gif|webp)$/i.test(name);
+
 onMounted(async () => {
     // 1. Fetch Public Config (Website Name)
     try {
@@ -188,7 +190,7 @@ async function join() {
              const decryptedLink = decryptMessage(msg);
              if (decryptedLink) {
                  messages.value.push({
-                     type: 'file',
+                     type: isImage(decryptedLink.name) ? 'image' : 'file',
                      content: decryptedLink.url,
                      name: decryptedLink.name,
                      sender: msg.sender
@@ -424,7 +426,7 @@ async function handleFileSelect(event) {
             ws.send(JSON.stringify(payload));
             
             messages.value.push({
-                type: 'file',
+                type: isImage(fileInfo.name) ? 'image' : 'file',
                 content: fileInfo.url,
                 name: fileInfo.name,
                 sender: username.value
@@ -499,7 +501,9 @@ async function handleFileSelect(event) {
                         
                         <span v-if="m.type === 'text'">{{ m.content }}</span>
                         <span v-if="m.type === 'image'">
-                            <img :src="m.content" style="max-width: 200px;" />
+                            <a :href="m.content" target="_blank" title="Click to view full size">
+                                <img :src="m.content" class="chat-image" />
+                            </a>
                         </span>
                         <span v-if="m.type === 'file'">
                             📎 <a :href="m.content" target="_blank">{{ m.name }}</a>
@@ -600,4 +604,7 @@ input { padding: 12px; width: 100%; box-sizing: border-box; border: 1px solid #5
 .input-area button { padding: 0 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
 .file-btn { cursor: pointer; background: #555; padding: 10px 15px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
 .file-btn:hover { background: #666; }
+
+.chat-image { max-width: 100%; max-height: 300px; border-radius: 8px; cursor: zoom-in; margin-top: 5px; border: 1px solid #555; display: block; }
+
 </style>
